@@ -3,18 +3,38 @@ package com.mainacad.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchService {
-    public static List<Integer> resultList =  Collections.synchronizedList(new ArrayList<>());
-
     public static List<Integer> search(List<Integer> Integers, int parts) {
         List<List<Integer>> listOfLists = divideList(Integers, parts);
+        List<SearchThread> threads = new ArrayList<>();
+        List<Integer> resultList = Collections.synchronizedList(new ArrayList<>());
 
         for (List<Integer> listForSearch:listOfLists) {
-            SearchThread SearchThread = new SearchThread(listForSearch);
-            SearchThread.start();
+            SearchThread searchThread = new SearchThread(listForSearch);
+            threads.add(searchThread);
+            searchThread.start();
+        }
+        waitingForFinishAllThreads(threads);
+        for (SearchThread thread : threads) {
+            resultList.addAll(thread.getSearched());
         }
         return resultList;
+    }
+
+    private static void waitingForFinishAllThreads(List<SearchThread> threads) {
+        while (
+                threads.stream().filter(thread -> (thread.isAlive()
+                        || thread.getState() == Thread.State.NEW
+                        || thread.isInterrupted())).
+                        collect(Collectors.toList()).size() != 0) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static <T> List<List<T>> divideList(List<T> list, int parts) {

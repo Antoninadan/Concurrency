@@ -8,17 +8,19 @@ import java.util.stream.Collectors;
 
 public class SearchThread extends Thread {
     List<Integer> listForSearch;
+    List<Integer> searched = new ArrayList<>();
 
     public SearchThread(List<Integer> listForSearch) {
         this.listForSearch = listForSearch;
     }
 
+    public List<Integer> getSearched() {
+        return searched;
+    }
+
     @Override
     public void run() {
-        synchronized (SearchService.resultList)
-        {SearchService.resultList.addAll(search());}
-//        System.out.println(search());
-//        System.out.println();
+        searched.addAll(search());
     }
 
     private List<Integer> search() {
