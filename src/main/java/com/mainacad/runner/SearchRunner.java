@@ -49,7 +49,7 @@ public class SearchRunner {
                 return objOne.compareTo(objTwo);
             }
         };
-        int index = Collections.binarySearch(list, 333);
+        int index = Collections.binarySearch(list, 333, comparator);
         System.out.println("index = " + index);
     }
 }
