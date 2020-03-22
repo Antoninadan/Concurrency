@@ -1,4 +1,4 @@
-package com.mainacad.service;
+package com.mainacad.service.search;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +21,7 @@ public class SearchThread extends Thread {
     @Override
     public void run() {
         searched.addAll(search());
+        Saver.saveResults(searched);
     }
 
     private List<Integer> search() {

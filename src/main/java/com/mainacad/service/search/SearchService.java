@@ -1,4 +1,4 @@
-package com.mainacad.service;
+package com.mainacad.service.search;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +16,14 @@ public class SearchService {
             threads.add(searchThread);
             searchThread.start();
         }
+
         waitingForFinishAllThreads(threads);
+
+        // Method 2
+//        return Saver.resultList;
+
+
+        // Method 1
         for (SearchThread thread : threads) {
             resultList.addAll(thread.getSearched());
         }

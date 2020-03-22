@@ -1,7 +1,6 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.SearchService;
-import com.mainacad.service.SearchThread;
+import com.mainacad.service.search.SearchService;
 
 import java.util.*;
 
