@@ -9,7 +9,6 @@ public class Saver {
 
     public static synchronized List<Integer> saveResults(List<Integer> searched){
         resultList.addAll(searched);
-//        System.out.println("Synch: " + resultList);
         return  resultList;
     }
 }

@@ -1,5 +1,6 @@
 package com.mainacad.runner;
 
+import com.mainacad.service.search.SearchOneService;
 import com.mainacad.service.search.SearchService;
 
 import java.util.*;
@@ -7,7 +8,7 @@ import java.util.*;
 public class SearchRunner {
     List<Integer> listOfTwos = Collections.synchronizedList(new ArrayList<>());
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         List<Integer> list = Arrays.asList(21, 12, 333, 14, 25, 1, 7, 28, 9, 210, 112, 333, 213,
                 14, 15, 5, 17, 182, 19, 20, 8, 9, 21, 12, 3, 14, 25, 1, 7, 28, 9,
                 210, 112, 12, 213, 14, 15, 5, 17, 182, 19, 20, 8, 9, 21, 12, 3, 14, 25, 1, 7,
@@ -40,15 +41,22 @@ public class SearchRunner {
         System.out.println((timeEnd2 - timeStart2) + " ms" + "- Multi method");
         System.out.println(resultList);
 
+        System.out.println("\n" + "First one");
+        long timeStart3 = System.currentTimeMillis();
+        Integer searched = SearchOneService.searchOne(list,5);
+        long timeEnd3 = System.currentTimeMillis();
+        System.out.println((timeEnd3 - timeStart3) + " ms" + "- method");
+        System.out.println(searchedBike);
 
-        // 
-        Collections.sort(list);
-        Comparator<Integer> comparator = new Comparator<Integer>() {
-            public int compare(Integer objOne, Integer objTwo) {
-                return objOne.compareTo(objTwo);
-            }
-        };
-        int index = Collections.binarySearch(list, 333, comparator);
-        System.out.println("index = " + index);
+//
+//        // Comparator
+//        Collections.sort(list);
+//        Comparator<Integer> comparator = new Comparator<Integer>() {
+//            public int compare(Integer objOne, Integer objTwo) {
+//                return objOne.compareTo(objTwo);
+//            }
+//        };
+//        int index = Collections.binarySearch(list, 333, comparator);
+//        System.out.println("index = " + index);
     }
 }

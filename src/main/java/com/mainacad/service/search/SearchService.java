@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SearchService {
-    public static List<Integer> search(List<Integer> Integers, int parts) {
+    public static List<Integer> search(List<Integer> Integers, int parts) throws InterruptedException{
         List<List<Integer>> listOfLists = divideList(Integers, parts);
         List<SearchThread> threads = new ArrayList<>();
         List<Integer> resultList = Collections.synchronizedList(new ArrayList<>());
@@ -15,9 +15,12 @@ public class SearchService {
             SearchThread searchThread = new SearchThread(listForSearch);
             threads.add(searchThread);
             searchThread.start();
+
+            // Method 3: join instead  waitingForFinishAllThreads(threads);
+            searchThread.join();
         }
 
-        waitingForFinishAllThreads(threads);
+//        waitingForFinishAllThreads(threads);
 
         // Method 2
 //        return Saver.resultList;
