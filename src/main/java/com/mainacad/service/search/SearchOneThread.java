@@ -14,7 +14,7 @@ public class SearchOneThread extends Thread {
 
 
     @Override
-    public void run() {
+    public void run() throws IllegalThreadStateException{
 //        System.out.println(spreadThread.getState());
         searched = search();
 

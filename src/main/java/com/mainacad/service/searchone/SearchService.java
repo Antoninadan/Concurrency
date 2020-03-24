@@ -1,28 +1,48 @@
-package com.mainacad.service.search;
+package com.mainacad.service.searchone;
+
+import com.mainacad.service.searchone.SearchThread;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
-public class SearchOneService {
+public class SearchService {
     public static Integer searchOne(List<Integer> Integers, int parts) throws InterruptedException {
         List<List<Integer>> listOfLists = divideList(Integers, parts);
-        List<SearchOneThread> threads = new ArrayList<>();
-        Thread currentThread = Thread.currentThread();
-        Thread markerThread = new Thread("marker");
-        SaverOneThread saverOneThread = new SaverOneThread(currentThread);
+        List<SearchThread> threads = new ArrayList<>();
         Integer result = null;
 
-        System.out.println(currentThread.getName());
+        ReentrantLock locker = new ReentrantLock();
+        Condition conditionFinishSearch = locker.newCondition();
+        Saver saver = new Saver(conditionFinishSearch, threads);
 
         for (List<Integer> listForSearch : listOfLists) {
-            SearchOneThread searchOneThread = new SearchOneThread(listForSearch, saverOneThread);
-            threads.add(searchOneThread);
-            searchOneThread.setDaemon(true);
-            searchOneThread.start();
+            SearchThread searchThread = new SearchThread(listForSearch, saver);
+            threads.add(searchThread);
+//            searchThread.start();
         }
+
+//        conditionFinishSearch.await();
+//        conditionFinishSearch.awaitUntil(new Date());
+        GetResultThread getResultThread=new GetResultThread(conditionFinishSearch);
+        getResultThread.start();
+        threads.forEach(it -> it.start());
+
+//        locker.lock();
+//        try {
+//            // пока нет, ожидаем
+//            while (saver.getResult() == null)
+//                conditionFinishSearch.await();
+//
+//            System.out.println("Result: " + saver.getResult());
+//        } catch (InterruptedException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            locker.unlock();
+//        }
 
         return result;
     }
