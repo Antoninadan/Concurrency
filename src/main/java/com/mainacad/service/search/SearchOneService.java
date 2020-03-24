@@ -9,17 +9,18 @@ import java.util.stream.Collectors;
 public class SearchOneService {
     public static Integer searchOne(List<Integer> Integers, int parts) throws InterruptedException {
         List<List<Integer>> listOfLists = divideList(Integers, parts);
-        List<SearchThread> threads = new ArrayList<>();
-        Integer result;
+        List<SearchOneThread> threads = new ArrayList<>();
         Thread currentThread = Thread.currentThread();
+        SaverOneThread saverOneThread = new SaverOneThread(currentThread);
+        Integer result = null;
 
         for (List<Integer> listForSearch : listOfLists) {
-            SearchThread searchThread = new SearchThread(listForSearch);
-            threads.add(searchThread);
-            searchThread.setDaemon(true);
-            searchThread.start();
+            SearchOneThread searchOneThread = new SearchOneThread(listForSearch, saverOneThread);
+            threads.add(searchOneThread);
+            searchOneThread.setDaemon(true);
+            searchOneThread.start();
         }
-re
+
         return result;
     }
 

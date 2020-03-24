@@ -1,34 +1,34 @@
 package com.mainacad.service.search;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class SearchOneThread extends Thread {
     List<Integer> listForSearch;
     Integer searched;
-    Thread mainThread;
+    SaverOneThread spreadThread;
 
-    public SearchOneThread(List<Integer> listForSearch, Thread mainThread) {
+    public SearchOneThread(List<Integer> listForSearch, SaverOneThread spreadThread) {
         this.listForSearch = listForSearch;
-        this.mainThread = mainThread;
+        this.spreadThread = spreadThread;
     }
 
-    public Integer getSearched() {
-        return searched;
-    }
 
     @Override
     public void run() {
+//        System.out.println(spreadThread.getState());
         searched = search();
+
         if (searched != null) {
-            mainThread.interrupt();
-            SaverOne.saveResult(searched);
+            spreadThread.saveResult(searched);
+            if (spreadThread.getState().equals(Thread.State.NEW)) {
+                spreadThread.start();
+                System.out.println(Thread.currentThread().getName() + " run the spread");
+            }
+            System.out.println(Thread.currentThread().getName() + " search " + searched);
         }
     }
 
-    private Integer search() {
+    public Integer search() {
         for (Integer element : listForSearch) {
             if (Integer.toString(element).contains("6")) return element;
         }
