@@ -23,7 +23,7 @@ public class SearchService {
 //        waitingForFinishAllThreads(threads);
 
         // Method 2
-//        return Saver.resultList;
+//        return Regulator.resultList;
 
 
         // Method 1
