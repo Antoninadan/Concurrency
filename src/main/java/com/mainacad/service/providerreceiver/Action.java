@@ -1,4 +1,4 @@
-package com.mainacad.service.pushpull;
+package com.mainacad.service.providerreceiver;
 
 public class Action {
     private int value;

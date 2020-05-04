@@ -26,6 +26,22 @@ public class Account {
         System.out.println(this);
     }
 
+    public void takeMoneyBlock(String login, long password, int sum) {
+        synchronized (this) {
+            if (!checkPassAndLogin(login, password)) {
+                System.out.println("Wrong login or password");
+                return;
+            }
+            if (!checkMoney(sum)) {
+                System.out.println("You don't have money");
+                return;
+            }
+            transaction();
+            changeBalance(sum);
+            System.out.println(this);
+        }
+    }
+
     private boolean checkPassAndLogin(String login, long password) {
         return (login.equals(this.login) && this.password == password);
     }
