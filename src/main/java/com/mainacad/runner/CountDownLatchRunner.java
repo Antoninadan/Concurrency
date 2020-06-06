@@ -3,6 +3,9 @@ package com.mainacad.runner;
 import com.mainacad.service.countdownlatch.SingleThread;
 import com.mainacad.service.countdownlatch.SynchClass;
 
+//Используется для перевода потока в режим ожидания до тех пор, пока не наступит
+//        определенное количество событий.
+
 public class CountDownLatchRunner {
     public static void main(String[] args) {
         SynchClass synchClass = new SynchClass();

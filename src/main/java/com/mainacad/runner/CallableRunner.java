@@ -9,6 +9,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
+//Программа, которая в параллельных потоках вычислит размер файлов в
+//        каталоге, и вернет их сумму.
 // FixedThreadPoolRunner
 public class CallableRunner {
 
