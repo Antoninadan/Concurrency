@@ -23,7 +23,6 @@ public class ConsistentRunner {
         for(ThreadItem each:threadList){
             System.out.println(each.getResult());
 
-
         }
 
     }
