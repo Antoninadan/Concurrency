@@ -1,4 +1,4 @@
-package com.mainacad.service.shop;
+package com.mainacad.service.shoplocker;
 
 public class Producer implements Runnable{
     Store store;

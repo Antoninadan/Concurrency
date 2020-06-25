@@ -1,4 +1,4 @@
-package com.mainacad.service.shop;
+package com.mainacad.service.shoplocker;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
