@@ -1,12 +1,19 @@
 package com.mainacad.service.railway;
 
 public class Action {
-    private int value;
-    private boolean isNewTicket = false; // switch
-    private boolean stop = false;
+    private Ticket newTicket = null; // switch
 
+    public Ticket getNewTicket() {
+        return newTicket;
+    }
+
+    public void setNewTicket(Ticket newTicket) {
+        this.newTicket = newTicket;
+    }
+
+    // покупка
     public synchronized void purchise() {
-        while (isNewTicket == false) {
+        while (newTicket != null) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -20,26 +27,20 @@ public class Action {
     }
 
 
+    // продажа
     public synchronized void selling(int value) {
-        while (isValueGetting == true) {
+        while (newTicket != null) {
             try {
                 wait();
             } catch (InterruptedException e) {
             }
         }
-        this.value = value;
+
         isValueGetting = true;
         System.out.println("Send number -> " + this.value );
         notifyAll();
     }
 
 
-    public boolean isStop() {
-        return stop;
-    }
 
-
-    public	void setStop(boolean stop) {
-        this.stop = stop;
-    }
 }

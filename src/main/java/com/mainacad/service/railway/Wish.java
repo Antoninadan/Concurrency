@@ -8,4 +8,10 @@ public class Wish {
         this.person = person;
         this.ticket = ticket;
     }
+
+    public boolean isTicket(Ticket ticket){
+        return this.ticket == ticket;
+    }
 }
+
+
