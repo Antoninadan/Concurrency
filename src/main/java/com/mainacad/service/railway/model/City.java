@@ -1,4 +1,4 @@
-package com.mainacad.service.railway;
+package com.mainacad.service.railway.model;
 
 public enum City {
     Kyiv,

@@ -1,4 +1,7 @@
-package com.mainacad.service.railway;
+package com.mainacad.service.railway.model;
+
+import com.mainacad.service.railway.model.City;
+import com.mainacad.service.railway.model.Person;
 
 public class Ticket {
     private City source;
@@ -13,6 +16,11 @@ public class Ticket {
 
     public Person getSoldBy() {
         return soldBy;
+    }
+
+    @Override
+    public String toString() {
+        return source + " - " + destination;
     }
 
     public void setSoldBy(Person soldBy) {

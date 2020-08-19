@@ -1,38 +1,32 @@
 package com.mainacad.service.railway;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.mainacad.service.railway.model.Ticket;
+import com.mainacad.service.railway.model.Wish;
+import com.mainacad.service.railway.model.Wishes;
 
-public class WishesToBuy extends Thread{
-    private  Action action;
-    private List<Wish> list = new ArrayList<>();
+// бажання продати
+public class WishesToBuy extends Wishes implements Runnable {
+    private Action action;
 
-    public void add(Person person, Ticket ticket){
-        list.add(new Wish(person, ticket));
+    public void setAction(Action action) {
+        this.action = action;
     }
-
-    public void remove(Wish wish){
-        list.remove(wish);
-    }
-
-    public boolean checkWish(Wish wish){
-        return list.contains(wish);
-    }
-
-    public Wish findWish(Ticket ticket){
-        return list.stream().filter(x->x.isTicket(ticket)).findFirst();
-    }
-//
-//    public Wish checkFirstWish(List<Wish> wish){
-//        return list.contains(wish);
-//    }
-
 
     @Override
     public void run() {
+        while(true){
+        // хтось виказав бажання продати
         Ticket newTicket = action.getNewTicket();
-        if (checkWish())
+        Wish wishToBuy = findWishByTicket(newTicket).get();
+        Wish wishToSell = findWishByTicket(newTicket).get();
 
+
+        // якщо знайшли  в цьому списку
+        if (wishToBuy != null) {
+            remove(wishToBuy);
+
+            action.setNewTicket(null);
+        }}
     }
 }
 
