@@ -5,6 +5,8 @@ import com.mainacad.service.railway.model.Ticket;
 public class Action {
     private Ticket newWishToBuyTicket = null; // switch purchise
     private Ticket newWishToSellTicket = null; // switch selling
+    private boolean isNeedToRemoveTicketFromWishToSell = false;
+    private boolean isNeedToRemoveTicketFromWishToBuy = false;
 
     public Ticket getNewWishToBuyTicket() {
         return newWishToBuyTicket;
@@ -22,6 +24,22 @@ public class Action {
         this.newWishToSellTicket = newWishToSellTicket;
     }
 
+    public boolean isNeedToRemoveTicketFromWishToSell() {
+        return isNeedToRemoveTicketFromWishToSell;
+    }
+
+    public boolean isNeedToRemoveTicketFromWishToBuy() {
+        return isNeedToRemoveTicketFromWishToBuy;
+    }
+
+    public void setNeedToRemoveTicketFromWishToSell(boolean needToRemoveTicketFromWishToSell) {
+        isNeedToRemoveTicketFromWishToSell = needToRemoveTicketFromWishToSell;
+    }
+
+    public void setNeedToRemoveTicketFromWishToBuy(boolean needToRemoveTicketFromWishToBuy) {
+        isNeedToRemoveTicketFromWishToBuy = needToRemoveTicketFromWishToBuy;
+    }
+
     // покупка
     public synchronized void purchise() {
         while (newWishToBuyTicket == null) {
@@ -30,11 +48,7 @@ public class Action {
             } catch (InterruptedException e) {
             }
         }
-//        int result = this.value;
-//        isValueGetting = false;
-//        notifyAll();
-//        System.out.println("Number accepted -> " + this.value + "\n");
-//        return result;
+        notifyAll();
     }
 
 
@@ -46,12 +60,7 @@ public class Action {
             } catch (InterruptedException e) {
             }
         }
-
-//        isValueGetting = true;
-//        System.out.println("Send number -> " + this.value );
         notifyAll();
     }
-
-
 
 }

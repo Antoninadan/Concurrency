@@ -53,6 +53,7 @@ public class RailwayRunner {
     public static void main(String[] args) throws IOException {
         WishesToBuy wishesToBuy = new WishesToBuy();
         WishesToSell wishesToSell = new WishesToSell();
+        Action action = new Action();
 
         String line = "-";
         Pattern pattern = Pattern.compile("([1-3][1-3]*)");
