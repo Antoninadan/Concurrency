@@ -19,4 +19,8 @@ public class Wishes {
         return list.stream().filter(x -> x.isTicket(ticket)).findFirst();
     }
 
+    public void print(){
+        list.stream().forEach(x -> System.out.println(x));
+    }
+
 }

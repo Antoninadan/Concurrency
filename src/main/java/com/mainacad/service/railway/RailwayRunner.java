@@ -46,17 +46,22 @@ public class RailwayRunner {
     private static final String MAIN_MENU = LINE_SEP +
             "1 - Add wish to buy" + LINE_SEP +
             "2 – Add wish to sell" + LINE_SEP +
-            "3 – Stop the program ";
+            "3 – Print" + LINE_SEP +
+            "4 – Stop the program ";
     private static final String NUMBER_INPUT_TEXT = "Input number of wish";
 
 
     public static void main(String[] args) throws IOException {
-        WishesToBuy wishesToBuy = new WishesToBuy();
-        WishesToSell wishesToSell = new WishesToSell();
         Action action = new Action();
+        WishesToSell wishesToSell = new WishesToSell(action);
+        WishesToBuy wishesToBuy = new WishesToBuy(action);
+        Thread wishesToSellThread = new Thread(wishesToSell);
+        Thread wishesToBuyThread = new Thread(wishesToBuy);
+        wishesToSellThread.start();
+        wishesToBuyThread.start();
 
         String line = "-";
-        Pattern pattern = Pattern.compile("([1-3][1-3]*)");
+        Pattern pattern = Pattern.compile("([1-4][1-4]*)");
         Matcher matcher = pattern.matcher(line);
         while (!matcher.matches()) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -67,11 +72,16 @@ public class RailwayRunner {
                 Wish findedWish = inputWish();
                 wishesToBuy.add(findedWish);
                 System.out.println(findedWish + " is added to Wishes to BUY");
+                action.setNewWishToBuyTicket(findedWish.getTicket());
             } else if (line.equals("2")) {
                 Wish findedWish = inputWish();
                 wishesToSell.add(findedWish);
                 System.out.println(findedWish + "is added to Wishes to SELL");
-            }  else if (line.equals("3")) {
+
+            } else if (line.equals("3")) {
+                wishesToSell.print();
+                wishesToBuy.print();
+            } else if (line.equals("4")) {
                 System.exit(0);
             } else {
                 System.out.println("Bad command ");

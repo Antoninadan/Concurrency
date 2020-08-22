@@ -4,6 +4,8 @@ import com.mainacad.service.railway.model.Ticket;
 import com.mainacad.service.railway.model.Wish;
 import com.mainacad.service.railway.model.Wishes;
 
+import java.util.Optional;
+
 // бажання продати
 public class WishesToSell extends Wishes implements Runnable {
     private Action action;
@@ -11,6 +13,18 @@ public class WishesToSell extends Wishes implements Runnable {
     public void setAction(Action action) {
         this.action = action;
     }
+
+    public WishesToSell(Action action) {
+        this.action = action;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("Wishes to sell:");
+        super.print();
+        System.out.println();
+    }
+
 
     @Override
     public void run() {
@@ -21,15 +35,14 @@ public class WishesToSell extends Wishes implements Runnable {
                 remove(wishToSell);
             } else {
 
-                // хтось виказав бажання продати
+                // хтось виказав бажання купити
                 Ticket newTicket = action.getNewWishToSellTicket();
-                Wish wishToBuy = findWishByTicket(newTicket).get();
-                Wish wishToSell = findWishByTicket(newTicket).get();
+                Optional<Wish> newWish = findWishByTicket(newTicket);
 
                 // якщо знайшли  в цьому списку
-                if (wishToBuy != null) {
-                    remove(wishToBuy);
-                    action.setNeedToRemoveTicketFromWishToSell(true);
+                if (newWish.isPresent()) {
+                    remove(newWish.get());
+                    action.setNeedToRemoveTicketFromWishToBuy(true);
                 }
             }
 

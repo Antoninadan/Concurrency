@@ -12,16 +12,8 @@ public class Action {
         return newWishToBuyTicket;
     }
 
-    public void setNewWishToBuyTicket(Ticket newWishToBuyTicket) {
-        this.newWishToBuyTicket = newWishToBuyTicket;
-    }
-
     public Ticket getNewWishToSellTicket() {
         return newWishToSellTicket;
-    }
-
-    public void setNewWishToSellTicket(Ticket newWishToSellTicket) {
-        this.newWishToSellTicket = newWishToSellTicket;
     }
 
     public boolean isNeedToRemoveTicketFromWishToSell() {
@@ -41,7 +33,8 @@ public class Action {
     }
 
     // покупка
-    public synchronized void purchise() {
+    public synchronized void setNewWishToBuyTicket(Ticket newWishToBuyTicket) {
+        this.newWishToBuyTicket = newWishToBuyTicket;
         while (newWishToBuyTicket == null) {
             try {
                 wait();
@@ -53,7 +46,8 @@ public class Action {
 
 
     // продажа
-    public synchronized void selling(int value) {
+    public synchronized void setNewWishToSellTicket(Ticket newWishToSellTicket) {
+        this.newWishToSellTicket = newWishToSellTicket;
         while (newWishToSellTicket == null) {
             try {
                 wait();
