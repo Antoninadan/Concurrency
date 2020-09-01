@@ -4,4 +4,8 @@ public class Stage {
     private String name;
     private long seconds;
 
+    public Stage(String name, long seconds) {
+        this.name = name;
+        this.seconds = seconds;
+    }
 }

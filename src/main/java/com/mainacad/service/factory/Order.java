@@ -1,5 +1,8 @@
 package com.mainacad.service.factory;
 
+import java.util.LinkedList;
+
 public class Order {
-    private String
+    private Product product;
+    private LinkedList<StageInWork> stagesInWork;
 }
