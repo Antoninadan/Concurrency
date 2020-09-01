@@ -8,4 +8,12 @@ public class Stage {
         this.name = name;
         this.seconds = seconds;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getSeconds() {
+        return seconds;
+    }
 }
