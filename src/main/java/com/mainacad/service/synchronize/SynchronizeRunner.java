@@ -1,4 +1,4 @@
-package com.mainacad.runner;
+package com.mainacad.service.synchronize;
 
 import com.mainacad.service.synchronize.Account;
 import com.mainacad.service.synchronize.MoneyTakerThread;

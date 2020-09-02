@@ -1,4 +1,4 @@
-package com.mainacad.runner;
+package com.mainacad.service.atomic;
 
 import com.mainacad.service.atomic.AtomicClass;
 import com.mainacad.service.atomic.AtomicThread;

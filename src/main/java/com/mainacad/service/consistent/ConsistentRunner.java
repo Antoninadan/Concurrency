@@ -1,6 +1,4 @@
-package com.mainacad.runner;
-
-import com.mainacad.service.consistent.ThreadItem;
+package com.mainacad.service.consistent;
 
 import java.util.ArrayList;
 import java.util.List;

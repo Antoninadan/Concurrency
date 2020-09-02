@@ -1,4 +1,4 @@
-package com.mainacad.runner;
+package com.mainacad.service.exchanger;
 
 import com.mainacad.service.exchanger.ExchangeThread;
 

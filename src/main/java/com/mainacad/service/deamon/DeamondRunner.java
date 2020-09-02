@@ -1,4 +1,4 @@
-package com.mainacad.runner;
+package com.mainacad.service.deamon;
 
 import com.mainacad.service.deamon.ThreadClass;
 

@@ -1,4 +1,4 @@
-package com.mainacad.runner;
+package com.mainacad.service.callable;
 
 import com.mainacad.service.callable.FileLengtCounter;
 
