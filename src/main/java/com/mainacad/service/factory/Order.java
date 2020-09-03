@@ -3,7 +3,6 @@ package com.mainacad.service.factory;
 import com.mainacad.settings.Settings;
 import com.mainacad.util.FileUtil;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -28,56 +27,56 @@ public class Order extends Thread {
 
     @Override
     public void run() {
-        String fileNamePrefix = product.getName();
 
-        for (int i = 0; i < stages.size(); i++) {
-            Stage currentStage = stages.get(i);
+        try {
 
-            try {
-                TimeUnit.SECONDS.sleep(currentStage.getSeconds());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                for (int i = 0; i < stages.size(); i++) {
+                    Stage currentStage = stages.get(i);
 
-            String fileNameSuffix = worker;
-            List<String> text = Arrays.asList(currentStage.getName());
+                    TimeUnit.SECONDS.sleep(currentStage.getSeconds());
 
-            try {
-                FileUtil.appendTo(text, Settings.FILES_DIR, fileNamePrefix + "_" + fileNameSuffix);
+                    List<String> text = Arrays.asList(currentStage.getName());
 
-                System.out.println(text);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                    try {
+                        FileUtil.appendTo(text, Settings.FILES_DIR, getFileName());
+
+                        System.out.println(text);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 
-
-    // TODO fix bug
     public String getCurrentState() {
+
         StringBuilder result = new StringBuilder();
-        File[] files = FileUtil.findFiles(Settings.FILES_DIR, product.getName() + "_");
-
-        File each = files[0];
-        int startIndex = each.getName().lastIndexOf("_");
-        String workerName = each.getName().substring(startIndex + 1);
-        String stageName = null;
-
-
+        result.append("Worker ").append(worker).append(":").append(Settings.LINE_SEP);
         try {
-            List<String> stages = FileUtil.read(Settings.FILES_DIR, each.getName());
+            List<String> stages = FileUtil.read(Settings.FILES_DIR, getFileName());
+            stages.forEach(x -> result.append(x).append(Settings.LINE_SEP));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        stages.forEach(x -> result.append(x.getName()).append(Settings.LINE_SEP));
-
         return result.toString();
-
     }
 
     public void cancel(String reason) {
+        this.interrupt();
 
+        List<String> text = Arrays.asList(reason);
+        try {
+            FileUtil.appendTo(text, Settings.FILES_DIR, getFileName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getFileName() {
+        return product.getName() + "_" + worker;
     }
 
 }
