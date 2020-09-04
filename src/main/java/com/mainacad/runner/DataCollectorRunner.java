@@ -1,7 +1,7 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.ConcurrentDataCreator;
-import com.mainacad.service.ConcurrentDataExtractor;
+import com.mainacad.method.ConcurrentDataCreator;
+import com.mainacad.method.ConcurrentDataExtractor;
 
 import java.util.concurrent.atomic.AtomicLong;
 

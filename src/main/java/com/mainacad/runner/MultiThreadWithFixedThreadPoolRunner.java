@@ -1,6 +1,6 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.callable.FileLengtCounter;
+import com.mainacad.method.callable.FileLengtCounter;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.schedule.TimeViewer;
+import com.mainacad.method.schedule.TimeViewer;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

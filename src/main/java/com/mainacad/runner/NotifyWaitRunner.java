@@ -1,8 +1,8 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.shopnotifywait.Consumer;
-import com.mainacad.service.shopnotifywait.Producer;
-import com.mainacad.service.shopnotifywait.Store;
+import com.mainacad.method.shopnotifywait.Consumer;
+import com.mainacad.method.shopnotifywait.Producer;
+import com.mainacad.method.shopnotifywait.Store;
 
 public class NotifyWaitRunner {
     public static void main(String[] args) {

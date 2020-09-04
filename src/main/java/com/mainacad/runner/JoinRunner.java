@@ -1,6 +1,6 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.deamon.ThreadClass;
+import com.mainacad.method.deamon.ThreadClass;
 
 public class JoinRunner {
     public static void main(String[] args) {

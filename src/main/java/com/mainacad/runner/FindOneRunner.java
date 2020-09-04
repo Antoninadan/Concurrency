@@ -1,6 +1,6 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.findone.FindOneService;
+import com.mainacad.method.findone.FindOneService;
 
 import java.util.Arrays;
 import java.util.List;

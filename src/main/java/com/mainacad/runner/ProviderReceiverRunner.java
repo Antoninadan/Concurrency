@@ -1,8 +1,8 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.providerreceiver.Action;
-import com.mainacad.service.providerreceiver.ProviderThread;
-import com.mainacad.service.providerreceiver.ReceiverThread;
+import com.mainacad.method.providerreceiver.Action;
+import com.mainacad.method.providerreceiver.ProviderThread;
+import com.mainacad.method.providerreceiver.ReceiverThread;
 
 public class ProviderReceiverRunner {
     public static void main(String[] args) {

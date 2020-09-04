@@ -1,9 +1,8 @@
 package com.mainacad;
 
-import com.mainacad.service.ConcurrencyService;
+import com.mainacad.method.ConcurrencyService;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

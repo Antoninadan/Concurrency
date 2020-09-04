@@ -1,7 +1,7 @@
 package com.mainacad.runner;
 
-import com.mainacad.service.search2.LinearSearchI;
-import com.mainacad.service.search2.MultiSearchI;
+import com.mainacad.method.search2.LinearSearchI;
+import com.mainacad.method.search2.MultiSearchI;
 import com.mainacad.settings.Settings;
 import com.mainacad.util.FileUtil;
 import com.mainacad.util.TimeFixUtil;
