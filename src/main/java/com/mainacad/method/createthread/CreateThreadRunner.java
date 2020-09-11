@@ -24,20 +24,20 @@ class MyRunnable implements Runnable {
     @Override
     public void run() {
         Thread thread = Thread.currentThread();
-        System.out.println("Before -> " + thread.isInterrupted());
+        System.out.println("Before (thread.isInterrupted()) -> " + thread.isInterrupted());
 
         try {
             TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {
-            System.out.println("Catch -> " + thread.isInterrupted());
+            System.out.println("Catch (thread.isInterrupted()) -> " + thread.isInterrupted());
 
             thread.interrupt();
 
-            System.out.println("Catch2 -> " + thread.isInterrupted());//true
+            System.out.println("Catch2 (thread.isInterrupted()) -> " + thread.isInterrupted());//true
 
-            System.out.println("Catch3 -> " + thread.interrupted());//true
+            System.out.println("Catch3 (thread.interrupted()) -> " + thread.interrupted());//true
 
-            System.out.println("Catch4 -> " + thread.isInterrupted());//false
+            System.out.println("Catch4 (thread.isInterrupted()) -> " + thread.isInterrupted());//false
 
 
 
