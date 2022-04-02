@@ -1,15 +1,15 @@
 package com.mainacad.method.deamon;
 
 // 307
-public class ThreadClass extends Thread {
+public class MyThreadClass extends Thread {
 
-    public ThreadClass(String name) {
+    public MyThreadClass(String name) {
         super(name);
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.println(Thread.currentThread().getName() + " - " + i);
         }
 

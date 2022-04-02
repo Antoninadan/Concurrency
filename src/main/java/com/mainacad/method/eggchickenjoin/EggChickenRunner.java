@@ -1,12 +1,12 @@
-package com.mainacad.method.eggchicken;
+package com.mainacad.method.eggchickenjoin;
 
 public class EggChickenRunner {
-    static EggVoice eggVoice;    //Побочный поток
+    static EggVoiceThread eggVoiceThread;    //Побочный поток
 
     public static void main(String[] args) {
-        eggVoice = new EggVoice();    //Создание потока
+        eggVoiceThread = new EggVoiceThread();
         System.out.println("Спор начат...");
-        eggVoice.start();            //Запуск потока
+        eggVoiceThread.start();
 
         for (int i = 0; i < 5; i++) {
             try {
@@ -18,10 +18,10 @@ public class EggChickenRunner {
 
         //Слово «курица» сказано 5 раз
 
-        if (eggVoice.isAlive())    //Если оппонент еще не сказал последнее слово
+        if (eggVoiceThread.isAlive())    //Если оппонент еще не сказал последнее слово
         {
             try {
-                eggVoice.join();    //Подождать пока оппонент закончит высказываться.
+                eggVoiceThread.join();    //Подождать пока оппонент закончит высказываться.
             } catch (InterruptedException e) {
             }
             System.out.println("Первым появилось яйцо!");

@@ -4,10 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateThreadRunner {
     public static void main(String[] args) throws InterruptedException {
-        Runnable runnable = () -> {
-            System.out.println("I'm new thread");
-        };
-
         Thread thread = new Thread(new MyRunnable());
         thread.start();
         thread.interrupt();

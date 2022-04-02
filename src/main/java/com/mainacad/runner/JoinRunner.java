@@ -1,14 +1,14 @@
 package com.mainacad.runner;
 
-import com.mainacad.method.deamon.ThreadClass;
+import com.mainacad.method.deamon.MyThreadClass;
 
 public class JoinRunner {
     public static void main(String[] args) {
         Thread currentThread = Thread.currentThread();
         System.out.println("currentThread = " + currentThread.getName());
 
-        ThreadClass threadOne = new ThreadClass("one");
-        ThreadClass threadTwo = new ThreadClass("two");
+        MyThreadClass threadOne = new MyThreadClass("one");
+        MyThreadClass threadTwo = new MyThreadClass("two");
 
         threadOne.start();
         threadTwo.start();

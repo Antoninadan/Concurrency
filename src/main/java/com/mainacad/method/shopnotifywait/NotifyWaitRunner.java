@@ -1,4 +1,4 @@
-package com.mainacad.runner;
+package com.mainacad.method.shopnotifywait;
 
 import com.mainacad.method.shopnotifywait.Consumer;
 import com.mainacad.method.shopnotifywait.Producer;

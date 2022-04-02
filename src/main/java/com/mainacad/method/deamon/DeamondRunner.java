@@ -5,8 +5,7 @@ public class DeamondRunner {
         Thread currentThread = Thread.currentThread();
         System.out.println("currentThread = " + currentThread.getName());
 
-        ThreadClass threadOne = new ThreadClass("one");
-
+        MyThreadClass threadOne = new MyThreadClass("one");
         threadOne.setDaemon(true);
         threadOne.start();
 

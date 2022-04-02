@@ -1,6 +1,6 @@
-package com.mainacad.method.eggchicken;
+package com.mainacad.method.eggchickenjoin;
 
-public class EggVoice extends Thread {
+public class EggVoiceThread extends Thread {
     @Override
     public void run() {
         for (int i = 0; i < 5; i++) {
